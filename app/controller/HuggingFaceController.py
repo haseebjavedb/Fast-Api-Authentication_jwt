@@ -9,7 +9,7 @@ load_dotenv()
 
 HuggingFaceRouter = APIRouter()
 
-hf_token = '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'
+hf_token = ''
 bot_id = 'microsoft/Phi-3-mini-4k-instruct'
 
 
