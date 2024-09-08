@@ -19,18 +19,17 @@ class UserCreate(BaseModel):
     username:str
     email:str
     password:str
-    token:str
+    
 
 class UserLogin(BaseModel):
-    username:str
-    email:str
-    password:str
+    email: str
+    password: str
 
 
 class Token(BaseModel):
     access_token: str
     token_type: str
-    message:str
+    
 
 class TokenData(BaseModel):
     username: str | None = None       

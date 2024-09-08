@@ -37,12 +37,13 @@ async def register(user: UserCreate, db: Session = Depends(get_db)):
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
-    return {"access_token": access_token, "token_type": "bearer"} 
+    return {"access_token": access_token, "token_type": "bearer", "message": "User registered successfully"}
+
 
 
 @router.post("/login/", response_model=Token)
 async def login(user: UserLogin, db: Session = Depends(get_db)):
-    db_user = db.query(User).filter(User.username == user.username).first()
+    db_user = db.query(User).filter(User.email == user.email).first()
     message = "Login Successfull"
     
     if not db_user or not verify_password(user.password, db_user.hashed_password):
@@ -53,4 +54,4 @@ async def login(user: UserLogin, db: Session = Depends(get_db)):
     db_user.token = access_token
     db.commit()
     
-    return {"access_token": access_token, "token_type": "bearer", "message": message}
+    return {"access_token": access_token, "token_type": "bearer", "message": "User Login Successfully"}
